@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #0000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas></canvas>
+    <!--<script src="./ammo.wasm.js"></script>!-->
+    <script src="./qwebchannel.js"></script>
+    <script>
+        window.pyBridge = null;
+        // ページ読み込み時にWebChannelを初期化
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof qt !== 'undefined' && qt.webChannelTransport) {
+                new QWebChannel(qt.webChannelTransport, (channel) => {
+                    // Python側で設定した "pyBridge" が channel.objects 内に格納されている
+                    pyBridge = channel.objects.pyBridge;
+                    // Pythonからのシグナル（イベント）を購読（Listen）
+                    pyBridge.messageReceivedFromPython.connect((msg) => {
+                        const msgj = JSON.parse(msg);
+                        onmacmove(msgj.x, msgj.y);
+                    });
+                });
+            } else {
+            }
+        });
+    </script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

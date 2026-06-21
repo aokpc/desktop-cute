@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "@pixi/filter-reflection": "^5.1.1",
+        "pixi-spine": "^4.0.4",
+        "pixi.js": "^7.3.1"
+    }
+}

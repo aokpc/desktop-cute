@@ -1,0 +1,22 @@
+.venv
+.DS_Store
+*.whl
+__pycache__
+node_modules
+deno.lock
+package-lock.json
+
+# secret files
+
+## magia record live2d
+image_native/live2d_v4/*
+
+## shinycolors spine
+spineweb/shinycolors/*
+
+## blue archive spine
+spineweb/ch0069_home/*
+spineweb/ch0063_home/*
+
+## pmx model
+mika/*
